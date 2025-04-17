@@ -1,0 +1,161 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-tables
+      author: dev
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+
+        - createTable:
+            tableName: unit
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: number_of_rooms
+                  type: INTEGER
+              - column:
+                  name: accommodation_type
+                  type: VARCHAR(50)
+              - column:
+                  name: floor
+                  type: INTEGER
+              - column:
+                  name: base_cost
+                  type: DECIMAL(10,2)
+              - column:
+                  name: description
+                  type: TEXT
+
+        - createTable:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: unit_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_booking_unit
+                    references: unit(id)
+              - column:
+                  name: start_date
+                  type: DATE
+              - column:
+                  name: end_date
+                  type: DATE
+              - column:
+                  name: paid
+                  type: BOOLEAN
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: cancelled
+                  type: BOOLEAN
+
+  - changeSet:
+      id: 002-insert-initial-units
+      author: dev
+      changes:
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 2 }
+              - column: { name: accommodation_type, value: HOME }
+              - column: { name: floor, value: 1 }
+              - column: { name: base_cost, value: 150.00 }
+              - column: { name: description, value: "Comfortable Home Unit 1" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 3 }
+              - column: { name: accommodation_type, value: FLAT }
+              - column: { name: floor, value: 2 }
+              - column: { name: base_cost, value: 200.00 }
+              - column: { name: description, value: "Modern Flat Unit 2" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 1 }
+              - column: { name: accommodation_type, value: APARTMENTS }
+              - column: { name: floor, value: 3 }
+              - column: { name: base_cost, value: 120.00 }
+              - column: { name: description, value: "Cozy Apartment Unit 3" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 2 }
+              - column: { name: accommodation_type, value: HOME }
+              - column: { name: floor, value: 2 }
+              - column: { name: base_cost, value: 180.00 }
+              - column: { name: description, value: "Spacious Home Unit 4" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 1 }
+              - column: { name: accommodation_type, value: FLAT }
+              - column: { name: floor, value: 4 }
+              - column: { name: base_cost, value: 130.00 }
+              - column: { name: description, value: "Urban Flat Unit 5" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 3 }
+              - column: { name: accommodation_type, value: HOME }
+              - column: { name: floor, value: 1 }
+              - column: { name: base_cost, value: 210.00 }
+              - column: { name: description, value: "Luxury Home Unit 6" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 2 }
+              - column: { name: accommodation_type, value: FLAT }
+              - column: { name: floor, value: 2 }
+              - column: { name: base_cost, value: 175.00 }
+              - column: { name: description, value: "Stylish Flat Unit 7" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 1 }
+              - column: { name: accommodation_type, value: APARTMENTS }
+              - column: { name: floor, value: 5 }
+              - column: { name: base_cost, value: 110.00 }
+              - column: { name: description, value: "Compact Apartment Unit 8" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 3 }
+              - column: { name: accommodation_type, value: HOME }
+              - column: { name: floor, value: 3 }
+              - column: { name: base_cost, value: 220.00 }
+              - column: { name: description, value: "Family Home Unit 9" }
+        - insert:
+            tableName: unit
+            columns:
+              - column: { name: number_of_rooms, value: 2 }
+              - column: { name: accommodation_type, value: FLAT }
+              - column: { name: floor, value: 4 }
+              - column: { name: base_cost, value: 160.00 }
+              - column: { name: description, value: "Bright Flat Unit 10" }
